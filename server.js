@@ -10,7 +10,7 @@ const mongodb = require('./data/database');
 /************************/
 /*** ROUTES ***/
 /************************/
-app.get('/', indexRoutes);
+app.use('/', indexRoutes);
 
 /************************/
 /*** LISTEN PORT ***/
