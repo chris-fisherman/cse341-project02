@@ -2,18 +2,16 @@
 /*** REQUIRE STATEMENTS ***/
 /************************/
 const express = require('express');
-const app = express();
-const port = process.env.PORT || 3000;
-const indexRoutes = require('./routes/indexRoutes');
+const router = express();
 
 /************************/
 /*** ROUTES ***/
 /************************/
-app.get('/', indexRoutes);
+router.get('/', (req, res) => {
+  res.send('Index route');
+});
 
 /************************/
-/*** LISTEN PORT ***/
+/*** EXPORTS ***/
 /************************/
-app.listen(port, () => {
-  console.log(`Running on port ${port}`);
-});
+module.exports = router;
