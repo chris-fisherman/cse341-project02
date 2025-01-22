@@ -1,0 +1,40 @@
+//****************************//
+//*** LOCALHOST ***//
+//****************************//
+
+### GET ALL MOVIES
+GET http://localhost:3000/movies
+
+### GET SINGLE MOVIE BY ID
+GET http://localhost:3000/movies/678f99ffabffce147e935de3
+
+### CREATE MOVIE
+POST http://localhost:3000/movies/ HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "Don't Look Up",
+    "description": "This is the story of two mediocre astronomers who must embark on a colossal media tour to warn humanity about an asteroid that is going to destroy the planet.",
+    "main_genre": "Dark Comedy",
+    "year": "2021",
+    "duration_min": "138",
+    "director": "Adam McKay",
+    "rating": "7.2"
+}
+
+### UPDATE MOVIE BY ID
+PUT http://localhost:3000/movies/6790d0926b5720495e6248b6 HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "Don't Look Up UPDATED",
+    "description": "This is the story of two mediocre astronomers who must embark on a colossal media tour to warn humanity about an asteroid that is going to destroy the planet.",
+    "main_genre": "Dark Comedy",
+    "year": "2021",
+    "duration_min": "138",
+    "director": "Adam McKay",
+    "rating": "7.2"
+}
+
+### DELETE MOVIE BY ID
+DELETE http://localhost:3000/movies/6790d0766b5720495e6248b5 HTTP/1.1

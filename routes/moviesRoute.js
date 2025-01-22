@@ -12,8 +12,12 @@ const moviesController = require('../controllers/moviesController');
 router.get('/', moviesController.getAllMovies);
 /*** get single movie by its id ***/
 router.get('/:id', moviesController.getSingleMovieById);
-// /*** create movie ***/
-// router.post('/', moviesController.createMovie);
+/*** create movie ***/
+router.post('/', moviesController.createMovie);
+/*** update movie ***/
+router.put('/:id', moviesController.updateMovie);
+/*** delete movie ***/
+router.delete('/:id', moviesController.deleteMovie);
 
 /************************/
 /*** EXPORTS ***/
