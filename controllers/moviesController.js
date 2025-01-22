@@ -8,6 +8,7 @@ const ObjectId = require('mongodb').ObjectId;
 /*** GET ALL MOVIES ***/
 /****************************/
 const getAllMovies = async (req, res) => {
+  //#swagger.tags=['Movies']
   const result = await mongodb.getDatabase().db().collection('movies').find();
   result.toArray().then((movies) => {
     res.setHeader('Content-Type', 'application/json');
@@ -19,6 +20,7 @@ const getAllMovies = async (req, res) => {
 /*** GET A SINGLE MOVIE BY ID ***/
 /****************************/
 const getSingleMovieById = async (req, res) => {
+  //#swagger.tags=['Movies']
   const movieId = new ObjectId(req.params.id);
   const result = await mongodb
     .getDatabase()
@@ -35,6 +37,7 @@ const getSingleMovieById = async (req, res) => {
 /*** CREATE MOVIE ***/
 /****************************/
 const createMovie = async (req, res) => {
+  //#swagger.tags=['Movies']
   const movie = {
     name: req.body.name,
     description: req.body.description,
@@ -63,6 +66,7 @@ const createMovie = async (req, res) => {
 /*** UPDATE MOVIE ***/
 /****************************/
 const updateMovie = async (req, res) => {
+  //#swagger.tags=['Movies']
   const movieId = new ObjectId(req.params.id);
   const movie = {
     name: req.body.name,
@@ -92,6 +96,7 @@ const updateMovie = async (req, res) => {
 /*** DELETE MOVIE ***/
 /****************************/
 const deleteMovie = async (req, res) => {
+  //#swagger.tags=['Movies']
   const movieId = new ObjectId(req.params.id);
   const response = await mongodb
     .getDatabase()
