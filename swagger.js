@@ -8,9 +8,9 @@ const swaggerAutogen = require('swagger-autogen')();
 /****************************/
 const doc = {
   info: {
-    title: 'Movies API',
+    title: 'Movies & Series API',
     description:
-      'This is a movies API documentation for project 02 of the CSE 341 Web Services course.',
+      'This is a movies & series API documentation for project 02 of the CSE 341 Web Services course.',
   },
   host: 'localhost:3000',
   schemes: ['http', 'https'],
