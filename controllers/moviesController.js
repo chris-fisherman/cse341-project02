@@ -22,7 +22,7 @@ const getAllMovies = async (req, res) => {
 const getSingleMovieById = async (req, res) => {
   //#swagger.tags=['Movies']
   if (!ObjectId.isValid(req.params.id)) {
-    res.status(400).json('Must use a valid contact id to find a contact.');
+    res.status(400).json('Must use a valid movie id to find a movie.');
   }
   const movieId = new ObjectId(req.params.id);
   const result = await mongodb
@@ -71,7 +71,7 @@ const createMovie = async (req, res) => {
 const updateMovie = async (req, res) => {
   //#swagger.tags=['Movies']
   if (!ObjectId.isValid(req.params.id)) {
-    res.status(400).json('Must use a valid contact id to update a contact.');
+    res.status(400).json('Must use a valid movie id to update a movie.');
   }
   const movieId = new ObjectId(req.params.id);
   const movie = {
@@ -104,7 +104,7 @@ const updateMovie = async (req, res) => {
 const deleteMovie = async (req, res) => {
   //#swagger.tags=['Movies']
   if (!ObjectId.isValid(req.params.id)) {
-    res.status(400).json('Must use a valid contact id to delete a contact.');
+    res.status(400).json('Must use a valid movie id to delete a movie.');
   }
   const movieId = new ObjectId(req.params.id);
   const response = await mongodb
