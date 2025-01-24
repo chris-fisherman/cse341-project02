@@ -9,11 +9,15 @@ const ObjectId = require('mongodb').ObjectId;
 /****************************/
 const getAllMovies = async (req, res) => {
   //#swagger.tags=['Movies']
-  const result = await mongodb.getDatabase().db().collection('movies').find();
-  result.toArray().then((movies) => {
-    res.setHeader('Content-Type', 'application/json');
-    res.status(200).json(movies);
-  });
+  try {
+    const result = await mongodb.getDatabase().db().collection('movies').find();
+    result.toArray().then((movies) => {
+      res.setHeader('Content-Type', 'application/json');
+      res.status(200).json(movies);
+    });
+  } catch (err) {
+    console.error(err);
+  }
 };
 
 /****************************/
@@ -25,15 +29,19 @@ const getSingleMovieById = async (req, res) => {
     res.status(400).json('Must use a valid movie id to find a movie.');
   }
   const movieId = new ObjectId(req.params.id);
-  const result = await mongodb
-    .getDatabase()
-    .db()
-    .collection('movies')
-    .find({ _id: movieId });
-  result.toArray().then((movies) => {
-    res.setHeader('Content-Type', 'application/json');
-    res.status(200).json(movies[0]);
-  });
+  try {
+    const result = await mongodb
+      .getDatabase()
+      .db()
+      .collection('movies')
+      .find({ _id: movieId });
+    result.toArray().then((movies) => {
+      res.setHeader('Content-Type', 'application/json');
+      res.status(200).json(movies[0]);
+    });
+  } catch (err) {
+    console.error(err);
+  }
 };
 
 /****************************/

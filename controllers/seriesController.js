@@ -9,11 +9,15 @@ const ObjectId = require('mongodb').ObjectId;
 /****************************/
 const getAllSeries = async (req, res) => {
   //#swagger.tags=['Series']
-  const result = await mongodb.getDatabase().db().collection('series').find();
-  result.toArray().then((series) => {
-    res.setHeader('Content-Type', 'application/json');
-    res.status(200).json(series);
-  });
+  try {
+    const result = await mongodb.getDatabase().db().collection('series').find();
+    result.toArray().then((series) => {
+      res.setHeader('Content-Type', 'application/json');
+      res.status(200).json(series);
+    });
+  } catch (err) {
+    console.error(err);
+  }
 };
 
 /****************************/
@@ -25,15 +29,19 @@ const getSingleSerieById = async (req, res) => {
     res.status(400).json('Must use a valid serie id to find a serie.');
   }
   const serieId = new ObjectId(req.params.id);
-  const result = await mongodb
-    .getDatabase()
-    .db()
-    .collection('series')
-    .find({ _id: serieId });
-  result.toArray().then((series) => {
-    res.setHeader('Content-Type', 'application/json');
-    res.status(200).json(series[0]);
-  });
+  try {
+    const result = await mongodb
+      .getDatabase()
+      .db()
+      .collection('series')
+      .find({ _id: serieId });
+    result.toArray().then((series) => {
+      res.setHeader('Content-Type', 'application/json');
+      res.status(200).json(series[0]);
+    });
+  } catch (err) {
+    console.error(err);
+  }
 };
 
 /****************************/
