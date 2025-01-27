@@ -5,6 +5,7 @@ const express = require('express');
 const router = express();
 const seriesController = require('../controllers/seriesController');
 const seriesValidation = require('../middlewares/seriesValidation');
+const { isAuthenticated } = require('../middlewares/authentication');
 
 /****************************/
 /*** ROUTES ***/
@@ -14,15 +15,21 @@ router.get('/', seriesController.getAllSeries);
 /*** get single serie by its id ***/
 router.get('/:id', seriesController.getSingleSerieById);
 /*** create serie ***/
-router.post('/', seriesValidation.validateSerie, seriesController.createSerie);
+router.post(
+  '/',
+  isAuthenticated,
+  seriesValidation.validateSerie,
+  seriesController.createSerie
+);
 /*** update serie ***/
 router.put(
   '/:id',
+  isAuthenticated,
   seriesValidation.validateSerie,
   seriesController.updateSerie
 );
 /*** delete movie ***/
-router.delete('/:id', seriesController.deleteSerie);
+router.delete('/:id', isAuthenticated, seriesController.deleteSerie);
 
 /************************/
 /*** EXPORTS ***/

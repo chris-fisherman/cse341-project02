@@ -6,21 +6,28 @@ const router = express();
 const moviesRoute = require('./moviesRoute');
 const seriesRoute = require('./seriesRoute');
 const swaggerRoute = require('./swaggerRoute');
+const passport = require('passport');
 
 /************************/
 /*** ROUTES ***/
 /************************/
 /*** swagger - api documentation ***/
 router.use('/', swaggerRoute);
-/*** index ***/
-router.get('/', (req, res) => {
-  //#swagger.tags=['Index route']
-  res.send('Movies and series API Index');
-});
 /*** movies ***/
 router.use('/movies', moviesRoute);
 /*** series ***/
 router.use('/series', seriesRoute);
+/*** login ***/
+router.get('/login', passport.authenticate('github'), (req, res) => {});
+/*** logout ***/
+router.get('/logout', function (req, res, next) {
+  req.logout(function (err) {
+    if (err) {
+      return next(err);
+    }
+    res.redirect('/');
+  });
+});
 
 /************************/
 /*** EXPORTS ***/
